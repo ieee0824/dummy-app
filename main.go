@@ -6,10 +6,16 @@ import (
 	"net"
 	"net/http"
 	"runtime"
+	"time"
 )
 
+var upTime = time.Now()
+
 func handler(w http.ResponseWriter, r *http.Request) {
+	now := time.Now()
 	str := "<h1>It works!</h1>"
+	str += fmt.Sprintf("uptime: %v<br>\n", upTime.String())
+	str += fmt.Sprintf("now: %v<br>\n", now.String())
 	str += fmt.Sprintf("%v<br>\n", runtime.GOOS)
 	str += fmt.Sprintf("%v<br>\n", runtime.GOARCH)
 	str += fmt.Sprintf("%v<br>\n", runtime.Version())
